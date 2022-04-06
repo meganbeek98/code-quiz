@@ -1,5 +1,5 @@
 const quizContainer = document.getElementById("quiz");
-const resultContainer = document.getElementById("results");
+const resultsContainer = document.getElementById("results");
 const submitButton = document.getElementById("submit");
 
 function makeQuiz(){
@@ -38,7 +38,42 @@ function makeQuiz(){
     quizContainer.innerHTML = output.join('');
 }
 
-function giveResults(){}
+function giveResults(){
+
+    // gathers answer containers from the quiz
+    const answerContainers = quizContainer.querySelectorAll(".answers");
+
+    // tracks the user's selected answers
+    let numCorrect = 0;
+
+    // tracks user's selected answers for EACH question
+    quizQuestions.forEach( (currentQuestion, questionNumber) => {
+
+        // finds selected answer
+        const answerContainer = answerContainers[questionNumber];
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;  // the "... || {}).value;..." --> accounts for if they leave the question BLANK (BLANK = 'undefined')
+
+        // if the answer is CORRECT (created an "if" statement)
+        if(userAnswer === cureentQuestion.correctAnswer){
+            // adds to the number of correct answers given
+            numCorrect ++;
+
+            // make CORRECT answers appear GREEN in color <-- (possibly do this later in CSS?)
+            answerContainers[questionNumber].style.color = 'lightgreen';
+        }
+        // if they get the answer WRONG or left it BLANK
+        else{
+            // make WRONG or BLANK answers appear RED in color <-- (possibly do this later in CSS?)
+            answerContainers[questionNumber].style.color = 'red';
+
+        }
+    });
+
+    // display the number of correct answers out of the total
+    resultsContainer.innerHTML = `${numCorrect} out of ${quizQuestions.length}`;
+
+}
 
 
 const quizQuestions = [
