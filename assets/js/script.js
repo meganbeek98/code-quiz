@@ -1,3 +1,6 @@
+const startButton = document.querySelector(".start-btn");
+
+
 // Start of FUNCTIONS
 function makeQuiz(){
     // created a variable to store the output in HTML
@@ -91,6 +94,7 @@ function showSlide(n) {
     }
 }
 
+
 // Start of VARIABLES
 const quizContainer = document.getElementById("quiz");
 const resultsContainer = document.getElementById("results");
@@ -168,6 +172,7 @@ const quizQuestions = [
     }
 ];
 
+
 // quiz will run/pop-up right away
 makeQuiz();
 
@@ -189,7 +194,7 @@ function showPreviousSlide() {
 showSlide(currentSlide);
 
 
-// Event Listeners --- shows results after hitting 'submit' button 
+// Event Listeners --- shows results after hitting 'submit' button
 submitButton.addEventListener('click', giveResults);
 previousButton.addEventListener('click', showPreviousSlide);
 nextButton.addEventListener('click', showNextSlide);

@@ -1,3 +1,15 @@
+.start-btn {
+    position: absolute;
+}
+
+.start-btn button {
+    font-size: 25px;
+    font-weight: 500;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .slide {
     position: absolute;
     left: 0px;
