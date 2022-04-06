@@ -1,6 +1,6 @@
-const quizContainer = document.getElementById('quiz');
-const resultContainer = document.getElementById('results');
-const submitButton = document.getElementById('submit');
+const quizContainer = document.getElementById("quiz");
+const resultContainer = document.getElementById("results");
+const submitButton = document.getElementById("submit");
 
 function makeQuiz(){
     // created a variable to store the output in HTML
@@ -40,11 +40,6 @@ function makeQuiz(){
 
 function giveResults(){}
 
-// quiz will pop up right away
-makeQuiz();
-
-// show results after hitting 'submit' button
-submitButton.addEventListener('click', giveResults);
 
 const quizQuestions = [
     {
@@ -117,3 +112,9 @@ const quizQuestions = [
         correctAnswer: "c"
     }
 ];
+
+// quiz will run/pop-up right away
+makeQuiz();
+
+// show results after hitting 'submit' button (Event Listeners)
+submitButton.addEventListener('click', giveResults);
