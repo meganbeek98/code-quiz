@@ -1,7 +1,4 @@
-const quizContainer = document.getElementById("quiz");
-const resultsContainer = document.getElementById("results");
-const submitButton = document.getElementById("submit");
-
+// Start of FUNCTIONS
 function makeQuiz(){
     // created a variable to store the output in HTML
     const output = [];
@@ -28,8 +25,11 @@ function makeQuiz(){
 
             // adds currentQuestion and its answers to the HTML output
             output.push(
-                `<div class="question"> ${currentQuestion.question} </div>
-                <div class="answers"> ${answers.join('')} </div>`
+
+                `<div class="slide">
+                    <div class="question"> ${currentQuestion.question} </div>
+                    <div class="answers"> ${answers.join("")} </div>
+                </div>`
             );  
         }
     );
@@ -55,7 +55,7 @@ function giveResults(){
         const userAnswer = (answerContainer.querySelector(selector) || {}).value;  // the "... || {}).value;..." --> accounts for if they leave the question BLANK (BLANK = 'undefined')
 
         // if the answer is CORRECT (created an "if" statement)
-        if(userAnswer === cureentQuestion.correctAnswer){
+        if(userAnswer === currentQuestion.correctAnswer){
             // adds to the number of correct answers given
             numCorrect ++;
 
@@ -75,6 +75,26 @@ function giveResults(){
 
 }
 
+function showSlide(n) {
+    slides[currentSlide].classList.remove('active-slide');      // removes 'active-slide' class (to hide the currentSlide)
+    slides[n].classList.add('active-slide');                    // adds 'active-slide' class (then displays the new slide)
+    currentSlide = n;                                           // this will update the current slide number (shows (n)-- which here would be the currentSlide)
+
+    if(currentSlide === slides.length-1){                       // if on first slide, this function will hide the "Previous Question" button
+        nextButton.style.display = 'none';                      // if on last slide, this will hide the "Next Question" button
+        submitButton.style.display = 'inline-block';            // if on last slide, this will display the "Submit" button, because it is the end of quiz
+    }
+    // logic, if OTHERWISE
+    else{
+        nextButton.style.display = 'inline-block';              // if not on last slide (else/otherwise), then display the "Next Question" button
+        submitButton.style.display = 'none';                    // if not on last slide (else/otherwise), then the "Submit" button will be hidden
+    }
+}
+
+// Start of VARIABLES
+const quizContainer = document.getElementById("quiz");
+const resultsContainer = document.getElementById("results");
+const submitButton = document.getElementById("submit");
 
 const quizQuestions = [
     {
@@ -151,5 +171,25 @@ const quizQuestions = [
 // quiz will run/pop-up right away
 makeQuiz();
 
-// show results after hitting 'submit' button (Event Listeners)
+// make questions appear only one at a time
+const previousButton = document.getElementById("previous");
+const nextButton = document.getElementById("next");
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+// functions that allow you to flip back and forth through the slides
+function showNextSlide() {
+    showSlide(currentSlide + 1);    // go forwards/next in quiz
+}
+function showPreviousSlide() {
+    showSlide(currentSlide - 1);    //go backwards/previous in quiz
+}
+
+// CALL the "showSlide" function
+showSlide(currentSlide);
+
+
+// Event Listeners --- shows results after hitting 'submit' button 
 submitButton.addEventListener('click', giveResults);
+previousButton.addEventListener('click', showPreviousSlide);
+nextButton.addEventListener('click', showNextSlide);
