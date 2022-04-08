@@ -205,6 +205,7 @@ showSlide(currentSlide);
 
 
 // Event Listeners --- shows results after hitting 'submit' button
+startButton.addEventListener('click', makeQuiz);
 submitButton.addEventListener('click', giveResults);
 previousButton.addEventListener('click', showPreviousSlide);
 nextButton.addEventListener('click', showNextSlide);
