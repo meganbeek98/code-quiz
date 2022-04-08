@@ -1,4 +1,14 @@
+// not sure how to make this work or where to put it
 const startButton = document.querySelector(".start-btn");
+
+        //Question for ASKBCS
+/* I created a quiz in HTML/CSS/JS.
+I need to make it to where the quiz only starts running IF the user clicks a button that says--> "Start Quiz"
+THEN, once started, a timer must countdown.
+The score given at the end can be either the number of questions that are correct out of total questions, 
+OR the final score can equal the remaining seconds left on the timer.
+Must be able to store HIGH SCORE at end of quiz (the final score must be storable, and be available for other users to see upon completion)
+Ask for users initials at end to store their HIGH SCORE. */
 
 
 // Start of FUNCTIONS
